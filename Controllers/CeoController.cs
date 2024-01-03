@@ -7,11 +7,17 @@ namespace ApiGestionDashboard.Controllers
     [ApiController]
     public class CeoController : ControllerBase
     {
-        [HttpGet]
-        [Route("Consultar")]
-        public IActionResult Consultar()
+        [HttpPost]
+        [Route("Alta")]
+        public IActionResult Alta(string rol)
         {
             return Ok(190);
+        }
+        [HttpGet]
+        [Route("ListarGerenteMozo")]
+        public IActionResult Listar(string rol)
+        {
+            return Ok("Lista de gerentes...");
         }
     }
 }
