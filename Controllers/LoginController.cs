@@ -1,27 +1,48 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using TechOil.DTOs;
+using TechOil.Helper;
+using TechOil.Services;
 
-namespace ApiGestionDashboard.Controllers
+namespace TechOil.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api")]
+    [Authorize]
     public class LoginController : ControllerBase
     {
+        private TokenJwtHelper _tokenJwtHelper;
+        private readonly IUnitOfWork _unitOfWork;
+        public LoginController(IUnitOfWork unitOfWork, IConfiguration configuration) {
+            _unitOfWork = unitOfWork;
+            _tokenJwtHelper = new TokenJwtHelper(configuration);
+        }
+
         /// <summary>
-        /// Login de usuario
+        /// Autentica un usuario
         /// </summary>
-        /// <param name="usuario"></param>
-        /// <param name="password"></param>
-        /// <returns>Usuario logueado</returns>
+        /// <returns>Retorna un token de autenticacion</returns>
+
         [HttpPost]
-        public IActionResult Login(string usuario, string password)
+        [Route("Login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(AuthenticateDto dto)
         {
-            if(usuario == "Matias" && password == "1234")
-            {
-                return Ok("token: asfdasfasf");
-            }
-            return Unauthorized("Usuario o clave erronea");
-        } 
-        // retomar trabajando con Apis - Parte 3 31:32
+            var usuarioCredentials = await _unitOfWork.UsuarioRepository.AuthenticateCredentials(dto); //esto me responde con un usuario
+            if(usuarioCredentials == null) { return Unauthorized("Las credenciales son incorrectas"); }
+
+            var token = _tokenJwtHelper.GenerateToken(usuarioCredentials);
+
+            var usuario = new UsuarioLoginDto()
+            {               
+                Email = usuarioCredentials.Email,
+                Name = usuarioCredentials.Nombre,                
+                Token = token
+            };
+
+            //return Ok(token);
+            return Ok(usuario);
+        }
     }
 }
