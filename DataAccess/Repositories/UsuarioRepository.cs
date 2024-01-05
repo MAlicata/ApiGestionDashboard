@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ApiGestionDashboard.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TechOil.DataAccess.Repositories.Interfaces;
-using TechOil.DTOs;
-using TechOil.Entities;
-using TechOil.Helper;
-using TechOil.Infrastructure;
-using TechOil.Services;
+using ApiGestionDashboard.DTOs;
+using ApiGestionDashboard.DataAccess.Repositories.Interfaces;
+using ApiGestionDashboard.Helper;
 
-namespace TechOil.DataAccess.Repositories
+namespace ApiGestionDashboard.DataAccess.Repositories
 {
     public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
     {
@@ -18,13 +16,13 @@ namespace TechOil.DataAccess.Repositories
         }
         public override async Task<bool> Update(Usuario updateUsuario)
         {
-           var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.CodUsuario == updateUsuario.CodUsuario);
+           var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == updateUsuario.Id);
 
             if (usuario == null) { return false; }
 
             usuario.Nombre = updateUsuario.Nombre;
             usuario.Dni = updateUsuario.Dni;
-            usuario.Tipo = updateUsuario.Tipo;
+            usuario.Rol = updateUsuario.Rol;
             usuario.Clave = updateUsuario.Clave;
             usuario.Email = updateUsuario.Email;
 
@@ -35,7 +33,7 @@ namespace TechOil.DataAccess.Repositories
 
         public override async Task<bool> Delete(int id)
         {
-            var usuario = await _context.Usuarios.Where(x => x.CodUsuario == id).FirstOrDefaultAsync();
+            var usuario = await _context.Usuarios.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (usuario != null) {
                 _context.Usuarios.Remove(usuario);
             }

@@ -1,6 +1,6 @@
 ﻿using ApiGestionDashboard.Entities;
 
-namespace TechOil.DTOs
+namespace ApiGestionDashboard.DTOs
 {
     public class UsuarioDTO
     {

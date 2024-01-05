@@ -1,4 +1,4 @@
-﻿namespace TechOil.DTOs
+﻿namespace ApiGestionDashboard.DTOs
 {
     public class UsuarioLoginDto
     {

@@ -1,7 +1,7 @@
 ﻿using System.Reflection.PortableExecutable;
-using TechOil.DataAccess.Repositories;
+using ApiGestionDashboard.DataAccess.Repositories;
 
-namespace TechOil.Services
+namespace ApiGestionDashboard.Services
 {
     public interface IUnitOfWork : IDisposable
     {

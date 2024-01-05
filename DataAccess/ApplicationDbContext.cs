@@ -1,8 +1,8 @@
 ﻿using ApiGestionDashboard.Entities;
 using Microsoft.EntityFrameworkCore;
-using TechOil.DataAccess.DatabaseSeeding;
+using ApiGestionDashboard.DataAccess.DatabaseSeeding;
 
-namespace TechOil.DataAccess
+namespace ApiGestionDashboard.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {

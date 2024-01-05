@@ -1,10 +1,30 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using ApiGestionDashboard.Helper;
+using ApiGestionDashboard.DTOs;
 
 namespace ApiGestionDashboard.Entities
 {
     public class Usuario
     {
+        public Usuario(UsuarioDTO dto)
+        {
+            Nombre = dto.Nombre;
+            Dni = dto.Dni;
+            Rol = dto.Rol;
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Usuario_Email);
+            Email = dto.Usuario_Email;
+        }
+        
+        public Usuario(UsuarioDTO dto, int id)
+        {
+            Id = id;
+            Nombre = dto.Nombre;
+            Dni = dto.Dni;
+            Rol = dto.Rol;
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Usuario_Email);
+            Email = dto.Usuario_Email;
+        }
         public Usuario()
         {
 

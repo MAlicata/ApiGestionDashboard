@@ -1,6 +1,6 @@
-﻿using TechOil.Entities;
+﻿using ApiGestionDashboard.Entities;
 
-namespace TechOil.DataAccess.Repositories.Interfaces
+namespace ApiGestionDashboard.DataAccess.Repositories.Interfaces
 {
     public interface IUsuarioRepository : IRepository<Usuario>
     {

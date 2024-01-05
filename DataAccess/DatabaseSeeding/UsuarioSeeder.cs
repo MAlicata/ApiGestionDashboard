@@ -2,7 +2,7 @@
 using ApiGestionDashboard.Helper;
 using Microsoft.EntityFrameworkCore;
 
-namespace TechOil.DataAccess.DatabaseSeeding
+namespace ApiGestionDashboard.DataAccess.DatabaseSeeding
 {
     public class UsuarioSeeder : IEntitySeeder
     {

@@ -1,5 +1,4 @@
-﻿
-namespace ApiGestionDashboard.DTOs
+﻿namespace ApiGestionDashboard.DTOs
 {
     public class LoginDto
     {

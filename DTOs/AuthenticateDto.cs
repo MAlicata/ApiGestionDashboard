@@ -1,8 +1,6 @@
-﻿namespace TechOil.DTOs
+﻿namespace ApiGestionDashboard.DTOs;
+public class AuthenticateDto
 {
-    public class AuthenticateDto
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
+    public string Email { get; set; }
+    public string Password { get; set; }
 }

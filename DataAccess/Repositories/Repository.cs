@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TechOil.DataAccess.Repositories.Interfaces;
-using TechOil.Entities;
+using ApiGestionDashboard.DataAccess.Repositories.Interfaces;
 
-namespace TechOil.DataAccess.Repositories
+namespace ApiGestionDashboard.DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -34,31 +33,11 @@ namespace TechOil.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public virtual Task<List<T>> GetAllActivo()
-        {
-            throw new NotImplementedException();
-        }
-
         public virtual async Task<T> GetById(int id)
         {
             return await _context.Set<T>().FindAsync(id);
             
         }
-
-        public Task<List<T>> GetAllTerminado()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<T>> GetAllConfirmado()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Proyecto>> GetAllPendiente()
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

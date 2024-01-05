@@ -1,7 +1,7 @@
-﻿using TechOil.DataAccess;
-using TechOil.DataAccess.Repositories;
+﻿using ApiGestionDashboard.DataAccess;
+using ApiGestionDashboard.DataAccess.Repositories;
 
-namespace TechOil.Services
+namespace ApiGestionDashboard.Services
 {
     public class UnitOfWorkService : IUnitOfWork
     {
